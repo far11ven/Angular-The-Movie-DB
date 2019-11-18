@@ -1,0 +1,14 @@
+<div class="card" *ngIf="selectedCompanySvc.companyName">
+  <div class="card-header">
+    <div class="card-body">{{ selectedCompanySvc.companyName }}</div>
+  </div>
+  <div class="card-body">
+    <li *ngFor="let id of selectedCompanySvc.companyIds">{{ id }}</li>
+  </div>
+</div>
+
+<div *ngIf="!selectedCompanySvc.companyName">
+  <alert type="warning">Please select a company to view details</alert>
+</div>
+
+<button class="btn btn-primary" routerLinkActive="active" routerLink="/home">Go to search</button>

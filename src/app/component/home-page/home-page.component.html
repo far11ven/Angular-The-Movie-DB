@@ -1,0 +1,38 @@
+<h1 class="card-header">Search The Movie DB</h1>
+<div class="custom-center-align">
+  <div class="home-page">
+    <input
+      class="search-input"
+      [(ngModel)]="searchText"
+      type="search"
+      placeholder="Search here..."
+      (input)="getCompanyDetails()"
+    />
+
+    <div *ngIf="companyInfo.length > 0">
+      <table class="table table-hover my-custom-scrollbar">
+        <tr
+          class="table-row"
+          *ngFor="let company of companyInfo"
+          (click)="onCompanySelect(company)"
+        >
+          {{
+            company["companyName"]
+          }}
+        </tr>
+      </table>
+
+      <button
+        class="btn btn-primary custom-center-align"
+        routerLinkActive="active"
+        routerLink="/info"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="companyInfo.length === 0">
+    <button class="btn btn-primary custom-center-align">Search</button>
+  </div>
+</div>
