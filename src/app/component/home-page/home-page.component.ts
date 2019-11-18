@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { BackendServiceComponent } from "../../backend-service/backend-service.component";
-import { SelectedCompanyService } from "../../selected-company.service";
+import { BackendServiceComponent } from "../../backend-service/backend-service.service";
+import { SelectedItemService } from "../../backend-service/selected-item.service";
 
 @Component({
   selector: "app-home-page",
@@ -9,33 +9,33 @@ import { SelectedCompanyService } from "../../selected-company.service";
 })
 export class HomePageComponent implements OnInit {
   public searchText = "";
-  public companyInfo: any[] = [];
-  public selectedCompany: any;
+  public imdbData: any[] = [];
+  public youtubeData: any[] = [];
+  public selectedItem: any;
 
   constructor(
     public backendSvc: BackendServiceComponent,
-    public selectedCompanySvc: SelectedCompanyService
+    public selectedItemSvc: SelectedItemService
   ) {}
 
   ngOnInit() {}
 
   getCompanyDetails() {
-    if (this.searchText.length > 2) {
-      this.backendSvc.test(this.searchText).subscribe(
-        response => {
-          console.log("response", response["searchResults"]);
-          this.companyInfo = response["searchResults"];
-        },
-        error => console.log("error", error)
-      );
-    }
+    this.backendSvc.fetch(this.searchText).subscribe(
+      response => {
+        console.log("response", response);
+        this.imdbData = response["data"].imdbData.results;
+        this.youtubeData = response["data"].youtubeData.data.items;
+      },
+      error => console.log("error", error)
+    );
   }
 
-  onCompanySelect(company) {
-    this.selectedCompany = company;
-    this.searchText = this.selectedCompany["companyName"];
-    this.selectedCompanySvc.companyName = this.selectedCompany["companyName"];
-    this.selectedCompanySvc.companyIds = this.selectedCompany["companyIds"];
-    console.log("selected event: ", this.selectedCompany);
+  onCompanySelect(item) {
+    this.selectedItem = item;
+    this.searchText = this.selectedItem["companyName"];
+    this.selectedItemSvc.itemName = this.selectedItem["companyName"];
+    this.selectedItemSvc.itemIds = this.selectedItem["companyIds"];
+    console.log("selected event: ", this.selectedItem);
   }
 }

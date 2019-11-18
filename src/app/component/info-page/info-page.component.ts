@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { SelectedCompanyService } from "../../selected-company.service";
+import { SelectedItemService } from "../../backend-service/selected-item.service";
 
 @Component({
   selector: "app-info-page",
@@ -7,7 +7,7 @@ import { SelectedCompanyService } from "../../selected-company.service";
   styleUrls: ["./info-page.component.scss"]
 })
 export class InfoPageComponent implements OnInit {
-  constructor(public selectedCompanySvc: SelectedCompanyService) {}
+  constructor(public selectedItemSvc: SelectedItemService) {}
 
   ngOnInit() {}
 }

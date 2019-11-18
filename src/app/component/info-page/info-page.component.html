@@ -1,14 +1,16 @@
-<div class="card" *ngIf="selectedCompanySvc.companyName">
+<a routerLinkActive="active"
+routerLink="/"><h1 class="header"> <img src="assets/logo.png"/> The Movie DB</h1></a>
+<div class="card" *ngIf="selectedItemSvc.itemName">
   <div class="card-header">
-    <div class="card-body">{{ selectedCompanySvc.companyName }}</div>
+    <div class="card-body">{{ selectedItemSvc.itemName }}</div>
   </div>
   <div class="card-body">
-    <li *ngFor="let id of selectedCompanySvc.companyIds">{{ id }}</li>
+    <li *ngFor="let id of selectedItemSvc.itemIds">{{ id }}</li>
   </div>
 </div>
 
-<div *ngIf="!selectedCompanySvc.companyName">
-  <alert type="warning">Please select a company to view details</alert>
+<div *ngIf="!selectedItemSvc.ItemName">
+  <alert type="warning">Please select a Item to view details</alert>
 </div>
 
 <button class="btn btn-primary" routerLinkActive="active" routerLink="/home">Go to search</button>
