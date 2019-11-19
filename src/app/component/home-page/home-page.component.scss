@@ -263,14 +263,16 @@ input#search-box {
 }
 
 .post:hover .ic-postlink,
-.post:hover .ic-instalink {
+.post:hover .ic-instalink,
+.ytpost:hover .ic-postlink,
+.ytpost:hover .ic-instalink {
   display: block;
 }
 
 .ic-postlink {
   display: none;
   position: absolute;
-  width: 30%;
+
   top: 0;
   bottom: 0;
   left: 0;

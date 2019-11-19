@@ -29,6 +29,9 @@
   </div>
   <div class="main-container">
     <div class="imdb_results">
+      <h2 *ngIf="imdbData.length > 0; else notShowBlock">
+        Amazon Results:
+      </h2>
       <ng-template *ngIf="imdbData !== {}; then showBlock; else notShowBlock">
       </ng-template>
       <ng-template #showBlock>
@@ -37,11 +40,11 @@
             <div
               class="col-4 col-sm-4 col-md-4"
               *ngFor="let imdb_item of imdbData"
-              (click)="onCompanySelect(imdb_item)"
+              (click)="onItemSelect(imdb_item)"
             >
               <a
-                routerLinkActive="active"
-                routerLink="{{ '/info/' + imdb_item['imdbid'] }}"
+                href="{{ 'https://www.imdb.com/title/' + imdb_item['imdbid'] }}"
+                target="_blank"
               >
                 <div class="post m-sm-1 m-0.5">
                   <div class="card">
@@ -68,28 +71,23 @@
       </ng-template>
       <ng-template #notShowBlock>
         <h4>
-          No Results Found on Imdb..
+          No Results Yet, Enter any movie name..
         </h4>
       </ng-template>
     </div>
     <div *ngIf="imdbData !== {}" class="youtube_results">
       <div *ngIf="youtubeData !== {}" class="container-fluid">
-        <h2 *ngIf="youtubeData !== {} || youtubeData !== undefined">
+        <h2 *ngIf="youtubeData.length > 0">
           Watch Youtube Trailers
         </h2>
         <div class="row no-gutters">
           <div
-            class="col-4 col-sm-4 col-md-4"
+            class="col-3 col-sm-3 col-md-3"
             *ngFor="let youtube_item of youtubeData"
           >
-            <div class="post m-sm-1 m-0.5">
+            <div class="ytpost m-sm-1 m-0.5">
               <div class="card">
                 <div class="card-head">
-                  <p>
-                    {{
-                      "https://www.youtube.com/embed/" + youtube_item.id.videoId
-                    }}
-                  </p>
                   <img
                     class="card-img-top"
                     src="{{ youtube_item.snippet.thumbnails.high.url }}"
@@ -142,9 +140,7 @@
           <iframe
             id="iframeYoutube"
             height="400"
-            src="{{
-              'https://www.youtube.com/embed/' + youtube_item.id.videoId
-            }}"
+            [src]="getIframeURL(youtube_item.id.videoId) | safe"
             frameborder="0"
             allowfullscreen
           ></iframe>

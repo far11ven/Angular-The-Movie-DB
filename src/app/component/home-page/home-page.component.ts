@@ -31,11 +31,16 @@ export class HomePageComponent implements OnInit {
     );
   }
 
-  onCompanySelect(item) {
+  onItemSelect(item) {
     this.selectedItem = item;
     this.searchText = this.selectedItem["companyName"];
     this.selectedItemSvc.itemName = this.selectedItem["companyName"];
     this.selectedItemSvc.itemIds = this.selectedItem["companyIds"];
     console.log("selected event: ", this.selectedItem);
+  }
+
+  getIframeURL(videoId: string) {
+    console.log("Iframe:", "https://www.youtube.com/embed/ + ${videoId}");
+    return `https://www.youtube.com/embed/${videoId}`;
   }
 }
