@@ -44,11 +44,27 @@
     ></script>
     <script type="text/javascript">
       $(document).ready(function() {
-        $("#modal-video").on("hidden.bs.modal", function() {
-          $("#modal-video iframe").attr(
-            "src",
-            $("#modal-video iframe").attr("src")
+        var $iframesAll = $("body").find("iframe");
+        $iframesAll.each(function(index, iframe) {
+          console.log(
+            "length >>",
+            $(iframe)
+              .find("video")
+              .attr("src")
           );
+          $(iframe)
+            .find("video")
+            .attr("preload", "auto");
+        });
+        $("body").on("hidden.bs.modal", function(e) {
+          var $iframes = $(e.target).find("iframe");
+          $iframes.each(function(index, iframe) {
+            $(iframe)
+              .find("video")
+              .attr("preload", "auto");
+              $(iframe).attr("src", $(iframe).attr("src"));
+            player.pauseVideo();
+          });
         });
       });
     </script>

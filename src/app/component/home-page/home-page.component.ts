@@ -23,7 +23,6 @@ export class HomePageComponent implements OnInit {
   getCompanyDetails() {
     this.backendSvc.fetch(this.searchText).subscribe(
       response => {
-        console.log("response", response);
         this.imdbData = response["data"].imdbData.results;
         this.youtubeData = response["data"].youtubeData.data.items;
       },
@@ -40,7 +39,7 @@ export class HomePageComponent implements OnInit {
   }
 
   getIframeURL(videoId: string) {
-    console.log("Iframe:", "https://www.youtube.com/embed/ + ${videoId}");
-    return `https://www.youtube.com/embed/${videoId}`;
+   
+    return `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
   }
 }
