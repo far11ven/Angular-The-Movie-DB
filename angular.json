@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "type-ahead-suggestion": {
+    "the-kmovie-db": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,15 +17,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/type-ahead-suggestion",
+            "outputPath": "dist/the-kmovie-db",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -62,18 +59,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "type-ahead-suggestion:build"
+            "browserTarget": "the-kmovie-db:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "type-ahead-suggestion:build:production"
+              "browserTarget": "the-kmovie-db:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "type-ahead-suggestion:build"
+            "browserTarget": "the-kmovie-db:build"
           }
         },
         "test": {
@@ -83,31 +80,21 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "assets": ["src/favicon.ico", "src/assets"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
     },
-    "type-ahead-suggestion-e2e": {
+    "the-kmovie-db-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -116,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "type-ahead-suggestion:serve"
+            "devServerTarget": "the-kmovie-db:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "type-ahead-suggestion:serve:production"
+              "devServerTarget": "the-kmovie-db:serve:production"
             }
           }
         },
@@ -128,13 +115,11 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
     }
   },
-  "defaultProject": "type-ahead-suggestion"
+  "defaultProject": "the-kmovie-db"
 }
