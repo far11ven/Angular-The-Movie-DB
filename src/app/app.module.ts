@@ -10,10 +10,17 @@ import { BackendServiceComponent } from "./backend-service/backend-service.servi
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SafePipe } from "./app.safeurl.pipe";
+import { ObjectKeysPipe } from "./app.objectkeys.pipe";
 import { AlertModule } from "ngx-bootstrap";
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent, InfoPageComponent, SafePipe],
+  declarations: [
+    AppComponent,
+    HomePageComponent,
+    InfoPageComponent,
+    SafePipe,
+    ObjectKeysPipe
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

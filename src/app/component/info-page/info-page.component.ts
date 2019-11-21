@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { BackendServiceComponent } from "../../backend-service/backend-service.service";
 import { ActivatedRoute } from "@angular/router";
 
@@ -9,8 +9,10 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class InfoPageComponent implements OnInit {
   movieItemTitle: String = "";
-  movieDetails: any = {};
+  movieItemDetails: any = {};
+  movieItemBlobData: any = {};
 
+  public arrayOfKeys;
   constructor(
     public _backendSvc: BackendServiceComponent,
     private _route: ActivatedRoute
@@ -18,18 +20,26 @@ export class InfoPageComponent implements OnInit {
     console.log("this._route.snapshot", this._route.snapshot);
     this.movieItemTitle = this._route.snapshot.url[1].path || "";
 
-    if (this.movieItemTitle != "") {
-      this.getMovieDetails();
+    if (this.movieItemTitle !== "") {
+      this.getmovieItemDetails();
     }
   }
 
   ngOnInit() {}
 
-  getMovieDetails() {
+  getmovieItemDetails() {
     this._backendSvc.getSelectedMovieInfo(this.movieItemTitle).subscribe(
       response => {
         console.log("response", response);
-        this.movieDetails = response;
+        this.movieItemDetails = response;
+        this.movieItemBlobData["poster"] = response["poster"];
+        this.movieItemBlobData["plot"] = response["plot"];
+        this.movieItemBlobData["ratings"] = response["ratings"];
+        console.log("movieItemBlobData :", this.movieItemBlobData);
+
+        delete this.movieItemDetails["poster"];
+        delete this.movieItemDetails["plot"];
+        delete this.movieItemDetails["ratings"];
       },
       error => console.log("error", error)
     );

@@ -1,8 +1,28 @@
-<div class="card">
-  <pre> hello</pre>
-  {{ movieDetails.Title }}
+<a routerLinkActive="active" routerLink="/">
+  <h2 class="header"><img src="assets/logo.png" /> The Movie DB</h2>
+</a>
+<div class="container">
+  <div class="row "><img src="{{ movieItemDetails['poster'] }}" /></div>
+  <div class="row ">
+    <div
+      class="col-6 col-sm-6 col-md-6"
+      *ngFor="let item of movieItemDetails | keyvalue"
+    >
+      <ul class="list-group  list-group-horizontal">
+        <li class="list-group-item">{{ item.key }}</li>
+        <br />
+        <li class="list-group-item">{{ item.value }}</li>
+      </ul>
+    </div>
+    <div
+      class="col-6 col-sm-6 col-md-6"
+      *ngFor="let blobitem of movieItemBlobData | keys"
+    >
+      <ul class="list-group  list-group-horizontal">
+        <li class="list-group-item">{{ blobitem.key }}</li>
+        <br />
+        <li class="list-group-item">{{ blobitem.value }}</li>
+      </ul>
+    </div>
+  </div>
 </div>
-
-<button class="btn btn-primary" routerLinkActive="active" routerLink="/home">
-  Go to search
-</button>
