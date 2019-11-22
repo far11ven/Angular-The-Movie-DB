@@ -1,7 +1,9 @@
 import { Injectable, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BackendServiceComponent implements OnInit {
   public url =
     "https://themoviedb-back-end.herokuapp.com/api/v1/movie/search?q=";
