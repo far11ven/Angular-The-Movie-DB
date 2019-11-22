@@ -6,46 +6,50 @@
     <div id="logo" style=" width:100%; height:100%">
       <img src="assets/logo.png" />
     </div>
-    <div class="input-group">
-      <input
-        [(ngModel)]="searchText"
-        class="form-control"
-        name="search"
-        id="search-box"
-        placeholder="Search a movie.."
-        type="search"
-      />
-      <div class="input-group-btn">
-        <button
-          id="search-btn"
-          class="btn btn-primary"
-          type="submit"
-          (click)="getCompanyDetails()"
-        >
-          <i class="fas fa-search"></i> <span> find it </span>
-        </button>
+    <form #myform="ngForm" (ngSubmit)="getMovieDetails(myform)" class="form">
+      <div class="input-group">
+        <input
+          [(ngModel)]="searchText"
+          class="form-control"
+          name="search"
+          id="search-box"
+          placeholder="Search a movie.."
+          type="search"
+        />
+        <div class="input-group-btn">
+          <button
+            id="search-btn"
+            class="btn btn-primary"
+            type="submit"
+            name="q"
+          >
+            <i class="fas fa-search"></i> <span> find it </span>
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
   <div class="main-container">
+    <div *ngIf="isLoading">
+        <img
+        class="img-center"
+        src="assets/spinner.svg"
+        alt="loading.."
+      />
+    </div>
     <div class="imdb_results">
-      <h2 *ngIf="imdbData.length > 0; else notShowBlock">
+      <h2 *ngIf="imdbData.length > 0">
         Amazon Results:
       </h2>
-      <ng-template *ngIf="imdbData !== {}; then showBlock; else notShowBlock">
-      </ng-template>
+      <ng-template *ngIf="imdbData !== {}; then showBlock"> </ng-template>
       <ng-template #showBlock>
         <div class="container-fluid">
           <div class="row no-gutters">
             <div
               class="col-4 col-sm-4 col-md-4"
               *ngFor="let imdb_item of imdbData"
-              (click)="onItemSelect(imdb_item)"
             >
-              <a
-                href="{{ 'https://www.imdb.com/title/' + imdb_item['imdbid'] }}"
-                target="_blank"
-              >
+              <a href="{{ '/info/' + imdb_item['imdbid'] }}" target="_blank">
                 <div class="post m-sm-1 m-0.5">
                   <div class="card">
                     <div class="card-head">
@@ -70,11 +74,6 @@
             </div>
           </div>
         </div>
-      </ng-template>
-      <ng-template #notShowBlock>
-        <h4>
-          No Results Yet, Enter any movie name..
-        </h4>
       </ng-template>
     </div>
     <div *ngIf="imdbData !== {}" class="youtube_results">
