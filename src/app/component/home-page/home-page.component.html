@@ -30,12 +30,18 @@
     </form>
   </div>
   <div class="main-container">
+    <div *ngIf="isLoading">
+        <img
+        class="img-center"
+        src="assets/spinner.svg"
+        alt="loading.."
+      />
+    </div>
     <div class="imdb_results">
-      <h2 *ngIf="imdbData.length > 0; else notShowBlock">
+      <h2 *ngIf="imdbData.length > 0">
         Amazon Results:
       </h2>
-      <ng-template *ngIf="imdbData !== {}; then showBlock; else notShowBlock">
-      </ng-template>
+      <ng-template *ngIf="imdbData !== {}; then showBlock"> </ng-template>
       <ng-template #showBlock>
         <div class="container-fluid">
           <div class="row no-gutters">
@@ -68,11 +74,6 @@
             </div>
           </div>
         </div>
-      </ng-template>
-      <ng-template #notShowBlock>
-        <h4>
-          No Results Yet, Enter any movie name..
-        </h4>
       </ng-template>
     </div>
     <div *ngIf="imdbData !== {}" class="youtube_results">

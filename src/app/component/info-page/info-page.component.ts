@@ -32,20 +32,15 @@ export class InfoPageComponent implements OnInit {
       response => {
         console.log("response", response);
         this.movieItemDetails = response;
-        this.movieItemBlobData["poster"] = response["poster"];
-        this.movieItemBlobData["plot"] = response["plot"];
-        this.movieItemBlobData["ratings"] = response["ratings"];
-        console.log("movieItemBlobData :", this.movieItemBlobData);
+        this.movieItemBlobData["poster"] = response["Poster"];
+        this.movieItemBlobData["plot"] = response["Plot"];
+        this.movieItemBlobData["ratings"] = response["Ratings"];
 
-        delete this.movieItemDetails["poster"];
-        delete this.movieItemDetails["plot"];
-        delete this.movieItemDetails["ratings"];
+        delete this.movieItemDetails["Poster"];
+        delete this.movieItemDetails["Plot"];
+        delete this.movieItemDetails["Ratings"];
       },
       error => console.log("error", error)
     );
-  }
-
-  getIframeURL(videoId: string) {
-    return `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
   }
 }

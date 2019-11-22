@@ -11,6 +11,7 @@ export class HomePageComponent implements OnInit {
   public searchText = "";
   public imdbData: any[] = [];
   public youtubeData: any[] = [];
+  public isLoading: boolean = false;
 
   constructor(
     public _backendSvc: BackendServiceComponent,
@@ -28,12 +29,17 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {}
 
   getMovieDetails() {
+    this.isLoading = true;
     this._backendSvc.fetch(this.searchText).subscribe(
       response => {
         this.imdbData = response["data"].imdbData.results;
         this.youtubeData = response["data"].youtubeData.data.items;
+        this.isLoading = false;
       },
-      error => console.log("error", error)
+      error => {
+        console.log("error", error);
+        this.isLoading = false;
+      }
     );
 
     this._router.navigate(["/"], { queryParams: { q: this.searchText } });
