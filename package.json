@@ -30,7 +30,7 @@
     "express": "^4.16.4",
     "googleapis": "^45.0.0",
     "imdb-api": "^4.0.3",
-    "jsdom": "^15.2.1",
+    "jsdom": "^16.5.0",
     "moment": "^2.23.0",
     "ngx-bootstrap": "^3.2.0",
     "node-sass": "^4.12.0",
